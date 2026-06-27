@@ -1,0 +1,10 @@
+pandas
+numpy
+matplotlib
+seaborn
+prophet
+scikit-learn
+sqlalchemy
+statsmodels
+joblib
+jupyter
