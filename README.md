@@ -2,12 +2,12 @@
 
 # 📈 Sales Forecasting & Performance Dashboard
 
-[![Live Dashboard](https://img.shields.io/badge/🌐_Live_Dashboard-Open_Now-2ea44f?style=for-the-badge)](http://localhost:8080/index.html)
+[![Live Dashboard](https://img.shields.io/badge/🌐_Live_Dashboard-Open_Now-2ea44f?style=for-the-badge)](https://avijeet2463.github.io/sales-forecasting-dashboard/sales-forecasting-dashboard/index.html)
 [![Python](https://img.shields.io/badge/Python-3.11-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://python.org)
 [![Prophet](https://img.shields.io/badge/Prophet-Forecasting-FF6600?style=for-the-badge)](https://facebook.github.io/prophet)
 [![Power BI](https://img.shields.io/badge/Power_BI-Dashboard-F2C811?style=for-the-badge&logo=powerbi&logoColor=black)](https://powerbi.microsoft.com)
 [![SQLite](https://img.shields.io/badge/SQL-SQLite-003B57?style=for-the-badge&logo=sqlite&logoColor=white)](https://sqlite.org)
-[![GitHub Pages](https://img.shields.io/badge/GitHub_Pages-Deployed-222222?style=for-the-badge&logo=github)](https://avijeet2463.github.io)
+[![GitHub Pages](https://img.shields.io/badge/GitHub_Pages-Deployed-222222?style=for-the-badge&logo=github)](http://localhost:8080/index.html)
 
 **End-to-end sales analytics and revenue forecasting pipeline.**  
 Built with Python · Prophet · SQL · Power BI · scikit-learn
@@ -308,7 +308,7 @@ Data Analyst · ML Engineer · AI Engineer — Bangalore · Delhi NCR · Remote
 
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Avijeet_Mohapatra-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/in/your-profile)
 [![GitHub](https://img.shields.io/badge/GitHub-avijeet2463-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/avijeet2463)
-[![Dashboard](https://img.shields.io/badge/Live_Dashboard-Visit_Now-2ea44f?style=for-the-badge)](https://avijeet2463.github.io/sales-forecasting-dashboard/sales_dashboard.html)
+[![Dashboard](https://img.shields.io/badge/Live_Dashboard-Visit_Now-2ea44f?style=for-the-badge)](http://localhost:8080/index.html)
 
 </div>
 
