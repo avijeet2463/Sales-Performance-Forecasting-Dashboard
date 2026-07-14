@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Sales Performance & Forecasting Dashboard — Real-time analytics, trend analysis, and revenue predictions built with Prophet ML model on Superstore data.">
+  <title>Sales Dashboard — Performance & Forecasting</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📈</text></svg>">
+</head>
+<body>
+
+<div class="app-layout">
+
+  <!-- ═══ Top Navigation Header ═══ -->
+  <header class="top-header" id="topHeader">
+    <div class="header-row">
+      <!-- Logo & Brand -->
+      <div class="header-brand">
+        <div class="header-logo">📈</div>
+        <div class="header-brand-text">
+          <div class="header-brand-title">Sales Performance Dashboard</div>
+          <div class="header-brand-sub">Prophet Forecasting Pipeline</div>
+        </div>
+      </div>
+
+      <!-- Navigation Tabs -->
+      <nav class="header-tabs" id="headerTabs">
+        <button class="tab-btn nav-item active" data-page="overview" id="nav-overview">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+          <span>Executive Overview</span>
+        </button>
+        <button class="tab-btn nav-item" data-page="deepdive" id="nav-deepdive">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+          <span>Sales Deep Dive</span>
+        </button>
+        <button class="tab-btn nav-item" data-page="forecast" id="nav-forecast">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+          <span>Forecast & Model</span>
+        </button>
+        <button class="tab-btn nav-item" data-page="predict" id="nav-predict">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          <span>Live Prediction</span>
+          <span class="tab-badge">NEW</span>
+        </button>
+      </nav>
+
+      <!-- Right Metadata Badges -->
+      <div class="header-right">
+        <div class="header-badge live-status">
+          <span class="pulse-dot"></span>
+          Prophet ML Model Active
+        </div>
+        <div class="header-badge">
+          <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          2014 — 2017
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ═══ Main Content Viewport ═══ -->
+  <main class="main-content" id="mainContent">
+
+    <!-- Dynamically Updated Page Header Title/Desc -->
+    <div class="main-header">
+      <div>
+        <h1 class="page-title" id="pageTitle">Executive Overview</h1>
+        <p class="page-description" id="pageDescription">High-level KPIs, revenue trends, and category performance</p>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!-- PAGE 1: Executive Overview                             -->
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <section class="page-section active" id="page-overview">
+
+      <!-- KPI Summary Row -->
+      <div class="kpi-grid">
+        <div class="kpi-card animate-in">
+          <div class="kpi-card-header">
+            <span class="kpi-label">Total Revenue</span>
+            <div class="kpi-icon">💰</div>
+          </div>
+          <div class="kpi-value" id="kpi-revenue">$0</div>
+          <div class="kpi-subtext">
+            <span class="kpi-trend-up">↑ 20.4%</span> YoY Growth (2017)
+          </div>
+        </div>
+        <div class="kpi-card animate-in animate-delay-1">
+          <div class="kpi-card-header">
+            <span class="kpi-label">Total Profit</span>
+            <div class="kpi-icon">📊</div>
+          </div>
+          <div class="kpi-value" id="kpi-profit">$0</div>
+          <div class="kpi-subtext">
+            Overall Margin: <span class="kpi-trend-up">12.5%</span>
+          </div>
+        </div>
+        <div class="kpi-card animate-in animate-delay-2">
+          <div class="kpi-card-header">
+            <span class="kpi-label">Total Orders</span>
+            <div class="kpi-icon">📦</div>
+          </div>
+          <div class="kpi-value" id="kpi-orders">0</div>
+          <div class="kpi-subtext">
+            Avg Order Value: <span class="kpi-trend-up">$459</span>
+          </div>
+        </div>
+        <div class="kpi-card animate-in animate-delay-3">
+          <div class="kpi-card-header">
+            <span class="kpi-label">Unique Customers</span>
+            <div class="kpi-icon">👥</div>
+          </div>
+          <div class="kpi-value" id="kpi-customers">0</div>
+          <div class="kpi-subtext">
+            Across <span class="kpi-trend-up">4 Regions</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Overview Charts Grid -->
+      <div class="charts-grid cols-1-2">
+        <!-- Monthly Revenue trend -->
+        <div class="chart-card animate-in animate-delay-1">
+          <div class="chart-header">
+            <div>
+              <div class="chart-title">Monthly Revenue Trend</div>
+              <div class="chart-subtitle">Historical revenue vs profit (2014-2017)</div>
+            </div>
+            <span class="chart-badge green">Q4 Holiday Spike</span>
+          </div>
+          <div class="chart-container" style="height: 290px;">
+            <canvas id="chart-revenue-trend"></canvas>
+          </div>
+        </div>
+
+        <!-- Category share -->
+        <div class="chart-card animate-in animate-delay-2">
+          <div class="chart-header">
+            <div>
+              <div class="chart-title">Revenue Share by Category</div>
+              <div class="chart-subtitle">Sales contribution breakdown</div>
+            </div>
+          </div>
+          <div class="chart-container" style="height: 290px;">
+            <canvas id="chart-category-donut"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <!-- YoY growth + Segment breakdown -->
+      <div class="charts-grid cols-2" style="margin-top: 20px;">
+        <div class="chart-card animate-in animate-delay-2">
+          <div class="chart-header">
+            <div>
+              <div class="chart-title">Year-over-Year Revenue Growth</div>
+              <div class="chart-subtitle">Annual sales trajectory</div>
+            </div>
+            <span class="chart-badge green">+20.4% (2017)</span>
+          </div>
+          <div class="chart-container" style="height: 250px;">
+            <canvas id="chart-yoy"></canvas>
+          </div>
+        </div>
+
+        <div class="chart-card animate-in animate-delay-3">
+          <div class="chart-header">
+            <div>
+              <div class="chart-title">Revenue by Segment</div>
+              <div class="chart-subtitle">Customer segment breakdown</div>
+            </div>
+          </div>
+          <div class="chart-container" style="height: 250px;">
+            <canvas id="chart-segment"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <!-- Key Insights Summary -->
+      <div class="insight-bar">
+        <div class="insight-item animate-in animate-delay-3">
+          <div class="insight-icon">📅</div>
+          <div class="insight-text"><strong>Q4 Holiday Spikes:</strong> Consistent seasonal peaks in November and December, driving 35%+ of annual revenue.</div>
+        </div>
+        <div class="insight-item animate-in animate-delay-3">
+          <div class="insight-icon">💻</div>
+          <div class="insight-text"><strong>Technology Dominance:</strong> Technology segment generates high revenue ($836K) and leads in profitability.</div>
+        </div>
+        <div class="insight-item animate-in animate-delay-4">
+          <div class="insight-icon">📊</div>
+          <div class="insight-text"><strong>Healthy Growth:</strong> Stable YoY progress, scaling from $484K in 2014 to $733K in 2017 (+51% increase).</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!-- PAGE 2: Sales Deep Dive                                -->
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <section class="page-section" id="page-deepdive">
+      <!-- Category breakdown + Region margin -->
+      <div class="charts-grid cols-2">
+        <div class="chart-card animate-in">
+          <div class="chart-header">
+            <div>
+              <div class="chart-title">Revenue vs Profit by Category</div>
+              <div class="chart-subtitle">Comparative volume vs net returns</div>
+            </div>
+          </div>
+          <div class="chart-container" style="height: 280px;">
+            <canvas id="chart-cat-revprofit"></canvas>
+          </div>
+        </div>
+
+        <div class="chart-card animate-in animate-delay-1">
+          <div class="chart-header">
+            <div>
+              <div class="chart-title">Profit Margin by Region</div>
+              <div class="chart-subtitle">West leads margins; Central lags at 7.9%</div>
+            </div>
+            <span class="chart-badge red">Central: 7.9%</span>
+          </div>
+          <div class="chart-container" style="height: 280px;">
+            <canvas id="chart-region-margin"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <!-- Products & Discounts -->
+      <div class="charts-grid cols-1-2" style="margin-top: 20px;">
+        <div class="chart-card animate-in animate-delay-1">
+          <div class="chart-header">
+            <div>
+              <div class="chart-title">Top 10 Products by Revenue</div>
+              <div class="chart-subtitle">High-value copiers and printing systems</div>
+            </div>
+          </div>
+          <div class="chart-container" style="height: 320px;">
+            <canvas id="chart-top-products"></canvas>
+          </div>
+        </div>
+
+        <div class="chart-card animate-in animate-delay-2">
+          <div class="chart-header">
+            <div>
+              <div class="chart-title">Discount vs Profitability</div>
+              <div class="chart-subtitle">Correlation: -0.22 (negative impact)</div>
+            </div>
+            <span class="chart-badge red">Destructive</span>
+          </div>
+          <div class="chart-container" style="height: 320px;">
+            <canvas id="chart-discount-scatter"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sub-category Profit Margins -->
+      <div class="charts-grid cols-1" style="margin-top: 20px;">
+        <div class="chart-card full-width animate-in animate-delay-2">
+          <div class="chart-header">
+            <div>
+              <div class="chart-title">Profit by Sub-Category</div>
+              <div class="chart-subtitle">Tables and Bookcases show systemic losses</div>
+            </div>
+            <span class="chart-badge red">3 Loss Areas</span>
+          </div>
+          <div class="chart-container" style="height: 360px;">
+            <canvas id="chart-subcat-profit"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <!-- Business Insights -->
+      <div class="insight-bar">
+        <div class="insight-item animate-in animate-delay-3">
+          <div class="insight-icon">🛑</div>
+          <div class="insight-text"><strong>Discount Cap:</strong> Every order with discounts exceeding 20% incurs losses. Cap promotional discounts to secure profit margins.</div>
+        </div>
+        <div class="insight-item animate-in animate-delay-3">
+          <div class="insight-icon">🪑</div>
+          <div class="insight-text"><strong>Product Review:</strong> Discontinue or raise pricing for Tables (-$17.7K) and Bookcases (-$3.5K) to arrest leakage.</div>
+        </div>
+        <div class="insight-item animate-in animate-delay-4">
+          <div class="insight-icon">🚀</div>
+          <div class="insight-text"><strong>Regional Optimization:</strong> Shift inventory and focus resources from Central (7.9% margin) to West (14.9%).</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!-- PAGE 3: Forecast & Model                               -->
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <section class="page-section" id="page-forecast">
+      <!-- Actual vs Forecast -->
+      <div class="chart-card animate-in" style="margin-bottom: 20px;">
+        <div class="chart-header">
+          <div>
+            <div class="chart-title">Actual vs Prophet Forecast</div>
+            <div class="chart-subtitle">Time-series forecasting with 95% confidence intervals</div>
+          </div>
+          <span class="chart-badge amber">Prophet ML Model</span>
+        </div>
+        <div class="chart-container" style="height: 310px;">
+          <canvas id="chart-actual-vs-forecast"></canvas>
+        </div>
+      </div>
+
+      <!-- Metrics and Table -->
+      <div class="charts-grid cols-2">
+        <div class="chart-card animate-in animate-delay-1">
+          <div class="chart-header">
+            <div>
+              <div class="chart-title">Model Evaluation Metrics</div>
+              <div class="chart-subtitle">3-Month holdout validation performance</div>
+            </div>
+            <span class="chart-badge green">Highly Accurate</span>
+          </div>
+          <div class="metrics-grid">
+            <div class="metric-box">
+              <div class="metric-label">MAE</div>
+              <div class="metric-value" id="metric-mae">$0</div>
+              <div class="metric-desc">Avg absolute variance</div>
+            </div>
+            <div class="metric-box">
+              <div class="metric-label">RMSE</div>
+              <div class="metric-value" id="metric-rmse">$0</div>
+              <div class="metric-desc">Penalizes large spikes</div>
+            </div>
+            <div class="metric-box">
+              <div class="metric-label">MAPE</div>
+              <div class="metric-value" id="metric-mape">0%</div>
+              <div class="metric-desc">Mean percentage variance</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="chart-card animate-in animate-delay-2">
+          <div class="chart-header">
+            <div>
+              <div class="chart-title">3-Month Out-of-Sample Forecast</div>
+              <div class="chart-subtitle">Expected values for Q1 2018</div>
+            </div>
+          </div>
+          <table class="forecast-table">
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Forecasted Sales</th>
+                <th>Lower Boundary (95%)</th>
+                <th>Upper Boundary (95%)</th>
+              </tr>
+            </thead>
+            <tbody id="forecast-table-body">
+              <!-- JS Injected -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Category Level mini-forecasts -->
+      <div class="charts-grid cols-3" style="margin-top: 20px;">
+        <div class="chart-card animate-in animate-delay-1">
+          <div class="chart-header">
+            <div class="chart-title">Furniture Forecast</div>
+          </div>
+          <div class="chart-container" style="height: 180px;">
+            <canvas id="chart-cat-furniture"></canvas>
+          </div>
+        </div>
+
+        <div class="chart-card animate-in animate-delay-2">
+          <div class="chart-header">
+            <div class="chart-title">Office Supplies Forecast</div>
+          </div>
+          <div class="chart-container" style="height: 180px;">
+            <canvas id="chart-cat-office"></canvas>
+          </div>
+        </div>
+
+        <div class="chart-card animate-in animate-delay-3">
+          <div class="chart-header">
+            <div class="chart-title">Technology Forecast</div>
+          </div>
+          <div class="chart-container" style="height: 180px;">
+            <canvas id="chart-cat-tech"></canvas>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!-- PAGE 4: Live Prediction                                -->
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <section class="page-section" id="page-predict">
+      <div class="prediction-layout">
+        <!-- Configuration Controls -->
+        <div class="prediction-controls animate-in">
+          <h2 style="font-size: 16px; font-weight: 700; color: var(--text-primary); margin-bottom: 4px;">Scenario Config</h2>
+          <p style="font-size: 11px; color: var(--text-dim); margin-bottom: 20px;">Simulate future revenue based on custom settings</p>
+
+          <div class="control-group">
+            <label class="control-label">Product Category</label>
+            <select class="control-select" id="predict-category">
+              <option value="All">All Categories</option>
+              <option value="Furniture">Furniture</option>
+              <option value="Office Supplies">Office Supplies</option>
+              <option value="Technology">Technology</option>
+            </select>
+          </div>
+
+          <div class="control-group">
+            <label class="control-label">Horizon (Months)</label>
+            <div class="range-container">
+              <div class="range-value" id="predict-months-display">6</div>
+              <input type="range" id="predict-months" min="1" max="12" value="6">
+              <div class="range-labels">
+                <span>1 Month</span>
+                <span>12 Months</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="control-group">
+            <label class="control-label">Growth Scenario</label>
+            <div class="scenario-buttons">
+              <button class="scenario-btn" data-scenario="pessimistic" id="btn-pessimistic">
+                <span class="scenario-icon">📉</span>
+                Pessimistic
+              </button>
+              <button class="scenario-btn active" data-scenario="base" id="btn-base">
+                <span class="scenario-icon">📊</span>
+                Base Case
+              </button>
+              <button class="scenario-btn" data-scenario="optimistic" id="btn-optimistic">
+                <span class="scenario-icon">🚀</span>
+                Optimistic
+              </button>
+            </div>
+          </div>
+
+          <button class="predict-btn" id="predict-btn">⚡ Run Simulation</button>
+        </div>
+
+        <!-- Simulation Results -->
+        <div class="prediction-results">
+          <!-- Summary Cards -->
+          <div class="prediction-summary-grid">
+            <div class="prediction-summary-card animate-in animate-delay-1">
+              <div class="prediction-summary-label">Expected Net Sales</div>
+              <div class="prediction-summary-value" id="pred-revenue" style="color: var(--accent-indigo);">—</div>
+              <div class="prediction-summary-sub" id="pred-revenue-sub">Choose configs & simulate</div>
+            </div>
+            <div class="prediction-summary-card animate-in animate-delay-2">
+              <div class="prediction-summary-label">Expected growth</div>
+              <div class="prediction-summary-value" id="pred-growth" style="color: var(--accent-green);">—</div>
+              <div class="prediction-summary-sub" id="pred-growth-sub">YoY change projection</div>
+            </div>
+            <div class="prediction-summary-card animate-in animate-delay-3">
+              <div class="prediction-summary-label">Confidence Boundaries</div>
+              <div class="prediction-summary-value" id="pred-confidence" style="color: var(--accent-amber);">—</div>
+              <div class="prediction-summary-sub" id="pred-confidence-sub">Uncertainty margin (95%)</div>
+            </div>
+          </div>
+
+          <!-- Output Chart Card -->
+          <div class="prediction-chart-card animate-in animate-delay-2">
+            <div class="chart-header">
+              <div>
+                <div class="chart-title" id="pred-chart-title">Sales Simulation Output</div>
+                <div class="chart-subtitle" id="pred-chart-subtitle">Configure scenarios and press "Run Simulation"</div>
+              </div>
+            </div>
+            <div class="chart-container" style="height: 330px;">
+              <canvas id="chart-prediction"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<!-- Core Dashboard scripts -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+<script src="data.js"></script>
+<script src="app.js"></script>
+
+</body>
+</html>
