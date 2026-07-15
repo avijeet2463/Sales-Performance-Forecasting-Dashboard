@@ -2,12 +2,12 @@
 
 # 📈 Sales Forecasting & Performance Dashboard
 
-[![Live Dashboard](https://img.shields.io/badge/🌐_Live_Dashboard-Open_Now-2ea44f?style=for-the-badge)](https://avijeet2463.github.io/sales-forecasting-dashboard/sales-forecasting-dashboard/index.html)
+[![Live Dashboard](https://img.shields.io/badge/🌐_Live_Dashboard-Open_Now-2ea44f?style=for-the-badge)](https://sales-performance-forecasting-dashbh.vercel.app/)
 [![Python](https://img.shields.io/badge/Python-3.11-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://python.org)
 [![Prophet](https://img.shields.io/badge/Prophet-Forecasting-FF6600?style=for-the-badge)](https://facebook.github.io/prophet)
 [![Power BI](https://img.shields.io/badge/Power_BI-Dashboard-F2C811?style=for-the-badge&logo=powerbi&logoColor=black)](https://powerbi.microsoft.com)
 [![SQLite](https://img.shields.io/badge/SQL-SQLite-003B57?style=for-the-badge&logo=sqlite&logoColor=white)](https://sqlite.org)
-[![GitHub Pages](https://img.shields.io/badge/GitHub_Pages-Deployed-222222?style=for-the-badge&logo=github)](https://sales-performance-forecasting-dashbh.vercel.app/)
+[![GitHub Pages](https://img.shields.io/badge/GitHub_Pages-Deployed-222222?style=for-the-badge&logo=github)](https://avijeet2463.github.io/Sales-Performance-Forecasting-Dashboard/)
 
 **End-to-end sales analytics and revenue forecasting pipeline.**  
 Built with Python · Prophet · SQL · Power BI · scikit-learn
@@ -15,7 +15,7 @@ Built with Python · Prophet · SQL · Power BI · scikit-learn
 </div>
 
 ---
-
+S
 ## 🔗 Quick Links
 
 | Resource | Link |
